@@ -17,7 +17,6 @@
   "types": "./dist/main.d.ts",
   "keywords": [
     "nestjs",
-    "typeorm",
     "database",
     "util",
     "core"
