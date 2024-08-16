@@ -1,0 +1,44 @@
+{
+  "name": "@nest-db-util/typeorm-adapter",
+  "version": "0.0.0",
+  "description": "TypeORM adapter for nest-db-util",
+  "homepage": "https://github.com/brunosm16/nest-db-util#readme",
+  "bugs": {
+    "url": "https://github.com/brunosm16/nest-db-util/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brunosm16/nest-db-util.git"
+  },
+  "license": "MIT",
+  "author": "brunosm16 <brunoskr23@gmail.com>",
+  "main": "./dist/main.js",
+  "module": "./dist/main.mjs",
+  "types": "./dist/main.d.ts",
+  "keywords": [
+    "nestjs",
+    "typeorm",
+    "database",
+    "util",
+    "adapter"
+  ],
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "dist",
+    "readme.md"
+  ],
+  "scripts": {
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "build": "tsup",
+    "export-vars": "export $(grep -v '^#' .env | xargs -0) && echo 'Environment variables are set'",
+    "lint": "eslint \"{packages,src,apps,libs,tests}/**/*.ts\" --fix",
+    "test": "jest --runInBand",
+    "test:coverage": "npm run test -- --coverage",
+    "test:watch": "npm run test -- --watch"
+  },
+  "dependencies": {
+    "tsup": "^8.2.4"
+  }
+}
