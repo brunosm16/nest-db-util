@@ -9,7 +9,7 @@
     "lint": "eslint \"{packages,src,apps,libs,tests}/**/*.ts\" --fix",
     "prettier": "prettier --write \"packages/**/*.ts\" \"tests/**/*.ts\"",
     "test": "jest --runInBand",
-    "test:cov": "npm run test -- --coverage",
+    "test:coverage": "npm run test -- --coverage",
     "prepare": "husky"
   },
   "dependencies": {},
