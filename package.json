@@ -12,6 +12,7 @@
     "test:coverage": "npm run test -- --coverage",
     "prepare": "husky"
   },
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",
