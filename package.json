@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "nest-db-util",
   "private": false,
   "workspaces": [
     "packages/*",
