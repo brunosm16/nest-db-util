@@ -12,6 +12,9 @@
     "test:coverage": "npm run test -- --coverage",
     "prepare": "husky"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
