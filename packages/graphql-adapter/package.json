@@ -40,5 +40,6 @@
   },
   "dependencies": {
     "tsup": "^8.2.4"
-  }
+  },
+  "gitHead": "df2557e0283b662dcf531ce005e48849fd7f72f3"
 }
