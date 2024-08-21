@@ -29,7 +29,8 @@
     "readme.md"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
@@ -43,5 +44,5 @@
   "dependencies": {
     "tsup": "^8.2.4"
   },
-  "gitHead": "d41bec343c2994805b9d23e5a33e09262e52d1b5"
+  "gitHead": "2fdf09eb06d7c57dee5381ac15cd924e57480491"
 }
