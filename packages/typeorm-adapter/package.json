@@ -1,6 +1,6 @@
 {
   "name": "@nest-db-util/typeorm-adapter",
-  "version": "0.0.3-alpha.0",
+  "version": "0.0.4-alpha.0",
   "description": "TypeORM adapter for nest-db-util",
   "homepage": "https://github.com/brunosm16/nest-db-util#readme",
   "bugs": {
@@ -40,5 +40,6 @@
   },
   "dependencies": {
     "tsup": "^8.2.4"
-  }
+  },
+  "gitHead": "f4bedabeaa18c64ebbdcb1b99ef0321e6f1fac4a"
 }
