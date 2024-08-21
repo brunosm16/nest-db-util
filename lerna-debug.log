@@ -1,15 +1,8 @@
-39 error Error: Command failed with exit code 1: npm install --package-lock-only --ignore-scripts
-39 error npm ERR! code E404
-39 error npm ERR! 404 Not Found - GET https://registry.npmjs.org/@nest-db-util%2fcore - Not found
-39 error npm ERR! 404
-39 error npm ERR! 404  '@nest-db-util/core@^0.0.1' is not in this registry.
-39 error npm ERR! 404
-39 error npm ERR! 404 Note that you can also install from a
-39 error npm ERR! 404 tarball, folder, http url, or git url.
-39 error
-39 error npm ERR! A complete log of this run can be found in: /home/brunom/.npm/_logs/2024-08-21T22_30_10_693Z-debug-0.log
-39 error     at makeError (/home/brunom/Workspace/my-repos/nest-db-util/node_modules/execa/lib/error.js:59:11)
-39 error     at handlePromise (/home/brunom/Workspace/my-repos/nest-db-util/node_modules/execa/index.js:114:26)
-39 error     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-39 error     at async VersionCommand.updatePackageVersions (/home/brunom/Workspace/my-repos/nest-db-util/node_modules/lerna/dist/index.js:9890:13)
-39 error     at async Promise.all (index 0)
+49 error Error: Command failed with exit code 128: git tag v0.0.1 -m v0.0.1
+49 error fatal: tag 'v0.0.1' already exists
+49 error     at makeError (/home/brunom/Workspace/my-repos/nest-db-util/node_modules/execa/lib/error.js:59:11)
+49 error     at handlePromise (/home/brunom/Workspace/my-repos/nest-db-util/node_modules/execa/index.js:114:26)
+49 error     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+49 error     at async VersionCommand.gitCommitAndTagVersion (/home/brunom/Workspace/my-repos/nest-db-util/node_modules/lerna/dist/index.js:9961:9)
+49 error     at async VersionCommand.commitAndTagUpdates (/home/brunom/Workspace/my-repos/nest-db-util/node_modules/lerna/dist/index.js:9926:18)
+49 error     at async Promise.all (index 0)

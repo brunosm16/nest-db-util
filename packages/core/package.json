@@ -1,6 +1,6 @@
 {
   "name": "@nest-db-util/core",
-  "version": "0.0.13-alpha.0",
+  "version": "0.0.17",
   "description": "Core package for nest-db-util",
   "homepage": "https://github.com/brunosm16/nest-db-util#readme",
   "bugs": {
@@ -28,6 +28,10 @@
     "dist",
     "readme.md"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
     "build": "tsup",
@@ -40,5 +44,5 @@
   "dependencies": {
     "tsup": "^8.2.4"
   },
-  "gitHead": "b95ed3be1ca96ec08a8731943c546502db7cfed9"
+  "gitHead": "4c0c0c817390282cc3f716d3e8a8a0719cd05ad2"
 }
