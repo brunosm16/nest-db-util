@@ -1,7 +1,7 @@
 import type { DatabaseQuery, FindManyResponse } from '@/interfaces';
 
 export abstract class DatabaseQueryServiceAbstract<T> {
-  protected makeFindManyResponse(
+  protected buildFindManyResponse(
     data: T[],
     count: number
   ): FindManyResponse<T> {

@@ -38,6 +38,7 @@
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
-    "tsup": "^8.2.4"
+    "tsup": "^8.2.4",
+    "@nest-db-util/core": "^0.0.1"
   }
 }
