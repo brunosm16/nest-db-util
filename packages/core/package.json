@@ -12,9 +12,9 @@
   },
   "license": "MIT",
   "author": "brunosm16 <brunoskr23@gmail.com>",
-  "main": "./dist/main.js",
-  "module": "./dist/main.mjs",
-  "types": "./dist/main.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "keywords": [
     "nestjs",
     "database",
