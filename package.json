@@ -12,10 +12,6 @@
     "test:coverage": "npm run test -- --coverage",
     "prepare": "husky"
   },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
   "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",
