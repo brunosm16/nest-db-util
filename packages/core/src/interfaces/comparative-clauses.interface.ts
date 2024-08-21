@@ -34,3 +34,7 @@ export type ComparativeClauses<ClauseType> = ClauseType extends
 
 export type ComparativeClausesKeys<ClauseType> =
   keyof ComparativeClauses<ClauseType>;
+
+export type ComparativeClausesKeyValue<T> = {
+  [K in keyof T]: ComparativeClauses<T[K]>;
+};
