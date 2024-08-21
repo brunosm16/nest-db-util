@@ -1,6 +1,6 @@
 {
   "name": "graphql-adapter",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "description": "GraphQL Adapter for nest-db-util",
   "homepage": "https://github.com/brunosm16/nest-db-util#readme",
   "bugs": {
