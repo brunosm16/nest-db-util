@@ -1,6 +1,6 @@
 {
   "name": "@nest-db-util/core",
-  "version": "0.0.4-alpha.0",
+  "version": "0.0.5-alpha.0",
   "description": "Core package for nest-db-util",
   "homepage": "https://github.com/brunosm16/nest-db-util#readme",
   "bugs": {
@@ -40,5 +40,5 @@
   "dependencies": {
     "tsup": "^8.2.4"
   },
-  "gitHead": "f4bedabeaa18c64ebbdcb1b99ef0321e6f1fac4a"
+  "gitHead": "5f82ad2aa83e983dacfe269c8cfae4519d0ad31e"
 }
