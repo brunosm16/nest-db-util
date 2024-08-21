@@ -1,5 +1,5 @@
 {
-  "name": "nest-db-util-core",
+  "name": "@nest-db-util/core",
   "version": "0.0.4",
   "description": "Core package for nest-db-util",
   "homepage": "https://github.com/brunosm16/nest-db-util#readme",
@@ -28,6 +28,9 @@
     "dist",
     "readme.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
     "build": "tsup",
@@ -40,5 +43,5 @@
   "dependencies": {
     "tsup": "^8.2.4"
   },
-  "gitHead": "b1da8e8e58f5b08300ffbe02e085ed974c698c83"
+  "gitHead": "a8bdf5897b7e41602f5a5657bac69a5246224dc3"
 }
