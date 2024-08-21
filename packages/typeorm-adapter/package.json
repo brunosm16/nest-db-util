@@ -1,6 +1,6 @@
 {
   "name": "typeorm-adapter",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "TypeORM adapter for nest-db-util",
   "homepage": "https://github.com/brunosm16/nest-db-util#readme",
   "bugs": {
@@ -29,6 +29,10 @@
     "dist",
     "readme.md"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
     "build": "tsup",
