@@ -1,6 +1,6 @@
 {
   "name": "@nest-db-util/core",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1",
   "description": "Core package for nest-db-util",
   "homepage": "https://github.com/brunosm16/nest-db-util#readme",
   "bugs": {
@@ -38,7 +38,7 @@
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
-    "tsup": "^8.2.4",
-    "@nest-db-util/core": "^0.0.1"
+    "@nest-db-util/core": "^0.0.1",
+    "tsup": "^8.2.4"
   }
 }
