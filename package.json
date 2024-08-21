@@ -1,5 +1,5 @@
 {
-  "name": "nest-db-util",
+  "name": "@brunosm16/nest-db-util",
   "private": true,
   "workspaces": [
     "packages/*",
@@ -17,7 +17,6 @@
     "registry": "https://registry.npmjs.org/"
   },
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
