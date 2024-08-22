@@ -33,13 +33,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
-    "build": "tsup",
-    "export-vars": "export $(grep -v '^#' .env | xargs -0) && echo 'Environment variables are set'",
-    "lint": "eslint \"{packages,src,apps,libs,tests}/**/*.ts\" --fix",
-    "test": "jest --runInBand",
-    "test:coverage": "npm run test -- --coverage",
-    "test:watch": "npm run test -- --watch"
+    "build": "tsup"
   },
   "dependencies": {
     "tsup": "^8.2.4"
