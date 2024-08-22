@@ -43,7 +43,13 @@
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
-    "tsup": "^8.2.4"
+    "tsup": "^8.2.4",
+    "@nest-db-util/core": "0.0.17",
+    "class-transformer": "0.5.1",
+    "typeorm": "0.3.20"
+  },
+  "devDependencies": {
+    "better-sqlite3": "11.2.1"
   },
   "gitHead": "4c0c0c817390282cc3f716d3e8a8a0719cd05ad2"
 }
