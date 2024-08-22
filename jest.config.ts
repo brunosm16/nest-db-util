@@ -3,26 +3,20 @@ import unitConfig from './jest.unit.config';
 
 import type { Config } from '@jest/types';
 
-const jestCoveragePaths = [
-  '<rootDir>/packages/**/*.ts',
-  '!<rootDir>/packages/**/tsup.config.ts',
-  '!**/dist/**',
-  '!**/node_modules/**',
-];
-
-export const commonJestConfig: Config.InitialOptions = {
+const config: Config.InitialOptions = {
   clearMocks: true,
-  collectCoverageFrom: jestCoveragePaths,
+  collectCoverageFrom: [
+    '<rootDir>/packages/**/*.ts',
+    '!<rootDir>/packages/**/tsup.config.ts',
+    '!**/dist/**',
+    '!**/node_modules/**',
+  ],
   moduleNameMapper: {
     '^@nest-db-util/(.*)$': '<rootDir>/packages/$1/src',
   },
   preset: 'ts-jest',
   setupFilesAfterEnv: ['jest-extended'],
   testEnvironment: 'node',
-};
-
-const config: Config.InitialOptions = {
-  ...commonJestConfig,
   coverageDirectory: 'coverage',
   projects: [e2eConfig, unitConfig],
 };
