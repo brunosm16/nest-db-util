@@ -43,9 +43,10 @@
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
-    "tsup": "^8.2.4",
+    "@faker-js/faker": "^8.4.1",
     "@nest-db-util/core": "0.0.17",
     "class-transformer": "0.5.1",
+    "tsup": "^8.2.4",
     "typeorm": "0.3.20"
   },
   "devDependencies": {
