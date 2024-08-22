@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/main.ts"],"sourcesContent":["function main() {\n  console.log('Live from nest-db-util typeorm-adapter package');\n}\n\nmain();\n"],"mappings":";AAAA,SAAS,OAAO;AACd,UAAQ,IAAI,gDAAgD;AAC9D;AAEA,KAAK;","names":[]}

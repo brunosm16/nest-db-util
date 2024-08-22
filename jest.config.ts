@@ -1,5 +1,5 @@
-import { e2eConfig } from './jest.e2e.config';
-import { unitConfig } from './jest.unit.config';
+import e2eConfig from './jest.e2e.config';
+import unitConfig from './jest.unit.config';
 
 import type { Config } from '@jest/types';
 

@@ -10,6 +10,8 @@
     "prettier": "prettier --write \"packages/**/*.ts\" \"tests/**/*.ts\"",
     "test": "jest --runInBand",
     "test:coverage": "npm run test -- --coverage",
+    "test:e2e": "npm run test -- --config=./jest.e2e.config.ts",
+    "test:unit": "npm run test -- --config=./jest.unit.config.ts",
     "prepare": "husky",
     "export-vars": "export $(grep -v '^#' .env | xargs -0) && echo 'Environment variables are set'"
   },
