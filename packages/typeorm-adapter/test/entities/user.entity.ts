@@ -9,22 +9,22 @@ import {
 
 @Entity()
 export class UserEntity {
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: string;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: string;
 
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ name: 'is_admin' })
   isAdmin: boolean;
 
-  @Column()
+  @Column({ name: 'social_number' })
   socialNumber: number;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: string;
 
   @Column()

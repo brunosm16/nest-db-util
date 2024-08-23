@@ -1,5 +1,6 @@
 import type { Repository } from 'typeorm';
 
+import { USER_ENTITY_COLUMNS_FIELDS_MAP } from '../../test/constants/user-entity-columns';
 import { UserEntity } from '../../test/entities';
 import { sqliteDatabaseTestFactory } from '../../test/factories';
 import { QueryBuilderAbstract } from './query-builder.abstract';
@@ -38,10 +39,32 @@ describe('Query Builder Abstract', () => {
     await testingDatabase.closeDatabase();
   });
 
-  it('Should get column name by field', async () => {
+  test.each(USER_ENTITY_COLUMNS_FIELDS_MAP)(
+    `Column name '$column' should correspond to field name '$field'`,
+    ({ column, field }) => {
+      const { queryBuilderMock } = makeSut(userTestEntityRepository);
+
+      const fieldName = field as keyof UserEntity;
+
+      const expectedField = `"${column}"`;
+
+      const columnName = queryBuilderMock.getColumnNameByField(fieldName);
+
+      expect(columnName).toEqual(expectedField);
+    }
+  );
+
+  it('Should return field name for non-existing column', async () => {
     const { queryBuilderMock } = makeSut(userTestEntityRepository);
 
-    const columName = queryBuilderMock.getColumnNameByField('id');
-    expect(columName).toEqual('"id"');
+    const fieldName = 'non-existing-field';
+
+    const expectedFieldName = `"${fieldName}"`;
+
+    const columnName =
+      // @ts-expect-error: Testing non-existing field
+      queryBuilderMock.getColumnNameByField(fieldName);
+
+    expect(columnName).toEqual(expectedFieldName);
   });
 });
