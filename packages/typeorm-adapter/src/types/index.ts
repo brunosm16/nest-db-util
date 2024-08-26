@@ -1,1 +1,1 @@
-export * from './comparative-expression-type';
+export * from './sql-expression';

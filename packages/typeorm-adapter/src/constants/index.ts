@@ -1,1 +1,1 @@
-export * from './comparative-operators-map';
+export * from './comparative-clauses-map';
