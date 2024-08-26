@@ -1,22 +1,25 @@
 export enum ComparativeBooleanOperatorsEnum {
   IS = 'is',
-  ISNOT = 'isNot',
+  IS_NOT = 'IS NOT',
 }
 
 export enum ComparativeRangeOperatorsEnum {
-  EQ = 'eq',
-  GT = 'gt',
-  GTE = 'gte',
-  IN = 'in',
-  LT = 'lt',
-  LTE = 'lte',
-  NEQ = 'neq',
-  NOTIN = 'notIn',
+  EQ = '=',
+  GT = '>',
+  GTE = '>=',
+  LT = '<',
+  LTE = '<=',
+  NEQ = '!=',
+}
+
+export enum ComparativeMembershipOperatorsEnum {
+  IN = 'IN',
+  NOT_IN = 'NOT IN',
 }
 
 export enum ComparativeLikeOperatorsEnum {
-  ILIKE = 'iLike',
-  LIKE = 'like',
-  NOTILIKE = 'notILike',
-  NOTLIKE = 'notLike',
+  I_LIKE = 'ILIKE',
+  LIKE = 'LIKE',
+  NOT_ILIKE = 'NOT ILIKE',
+  NOT_LIKE = 'NOT LIKE',
 }
