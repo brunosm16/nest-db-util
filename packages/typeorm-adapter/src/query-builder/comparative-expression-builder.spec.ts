@@ -43,12 +43,12 @@ describe('Comparative Clauses Builder', () => {
         comparativeClausesBuilderMock.buildComparativeExpression(
           'isAdmin',
           true,
-          // @ts-expect-error: Testing non-existing operator
-          'any_operator'
+          // @ts-expect-error: Testing non-existing clause
+          'any_clause'
         );
       } catch (error: any) {
         expect(error?.message).toEqual(
-          "Invalid comparative operator: 'any_operator'"
+          "Invalid comparative operator: 'any_clause'"
         );
       }
     });
