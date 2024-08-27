@@ -9,6 +9,9 @@ import {
 
 @Entity()
 export class UserEntity {
+  @Column({ name: 'user_country' })
+  country: string;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: string;
 

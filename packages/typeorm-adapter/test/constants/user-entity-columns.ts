@@ -27,4 +27,8 @@ export const USER_ENTITY_COLUMNS_FIELDS_MAP = [
     column: 'username',
     field: 'username',
   },
+  {
+    column: 'user_country',
+    field: 'country',
+  },
 ];
