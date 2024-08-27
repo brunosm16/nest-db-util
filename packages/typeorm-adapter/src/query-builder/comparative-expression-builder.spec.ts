@@ -33,7 +33,7 @@ describe('Comparative Clauses Builder', () => {
     await testingDatabase.closeDatabase();
   });
 
-  describe('Boolean Clauses', () => {
+  describe('Boolean Expressions', () => {
     it('Should throw an error for non-existing clause', () => {
       const { comparativeClausesBuilderMock } = makeSut(
         userTestEntityRepository
