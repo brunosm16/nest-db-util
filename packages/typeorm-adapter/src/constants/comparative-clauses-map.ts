@@ -1,4 +1,4 @@
-export const COMPARATIVE_RANGE_CLAUSES_MAP: Record<string, string> = {
+export const COMPARATIVE_RANGE_CLAUSES_OPERATORS_MAP: Record<string, string> = {
   eq: '=',
   gt: '>',
   gte: '>=',
@@ -7,7 +7,7 @@ export const COMPARATIVE_RANGE_CLAUSES_MAP: Record<string, string> = {
   neq: '!=',
 };
 
-export const COMPARATIVE_LIKE_CLAUSES_MAP: Record<string, string> = {
+export const COMPARATIVE_LIKE_CLAUSES_OPERATORS_MAP: Record<string, string> = {
   iLike: 'ILIKE',
   like: 'LIKE',
   notILike: 'NOT ILIKE',
@@ -15,19 +15,23 @@ export const COMPARATIVE_LIKE_CLAUSES_MAP: Record<string, string> = {
   notLike: 'NOT LIKE',
 };
 
-export const COMPARATIVE_MEMBERSHIP_CLAUSES_MAP: Record<string, string> = {
+export const COMPARATIVE_MEMBERSHIP_CLAUSES_OPERATORS_MAP: Record<
+  string,
+  string
+> = {
   in: 'IN',
   notIn: 'NOT IN',
 };
 
-export const COMPARATIVE_BOOLEAN_CLAUSES_MAP: Record<string, string> = {
-  is: 'IS',
-  isNot: 'IS NOT',
-};
+export const COMPARATIVE_BOOLEAN_CLAUSES_OPERATORS_MAP: Record<string, string> =
+  {
+    is: 'IS',
+    isNot: 'IS NOT',
+  };
 
 export const COMPARATIVE_CLAUSES = {
-  ...COMPARATIVE_BOOLEAN_CLAUSES_MAP,
-  ...COMPARATIVE_LIKE_CLAUSES_MAP,
-  ...COMPARATIVE_MEMBERSHIP_CLAUSES_MAP,
-  ...COMPARATIVE_RANGE_CLAUSES_MAP,
+  ...COMPARATIVE_BOOLEAN_CLAUSES_OPERATORS_MAP,
+  ...COMPARATIVE_LIKE_CLAUSES_OPERATORS_MAP,
+  ...COMPARATIVE_MEMBERSHIP_CLAUSES_OPERATORS_MAP,
+  ...COMPARATIVE_RANGE_CLAUSES_OPERATORS_MAP,
 };
