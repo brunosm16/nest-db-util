@@ -11,12 +11,13 @@ import {
   BooleanExpressionsEnum,
   ComparativeClausesCategoriesEnum,
 } from '../enums';
+import { isValidArray } from '../utils';
 import { QueryBuilderAbstract } from './query-builder.abstract';
 
 export class ComparativeClausesBuilder<
   BuilderEntity,
 > extends QueryBuilderAbstract<BuilderEntity> {
-  private numberOfParameters: number = 0;
+  private parametersArray: unknown[] = [];
 
   constructor(public readonly repository: Repository<BuilderEntity>) {
     super(repository);
@@ -32,6 +33,27 @@ export class ComparativeClausesBuilder<
     return {
       expression: `${column} ${booleanOperator} ${booleanValue}`,
       parameters: {},
+    };
+  }
+
+  private buildMembershipExpression<Field extends keyof BuilderEntity>(
+    column: string,
+    value: EntityValues<BuilderEntity, Field>,
+    membershipOperator: string
+  ): SqlExpression {
+    if (!isValidArray(value)) {
+      throw new Error(
+        'Invalid array for membership operator. Array needs to have at least one item'
+      );
+    }
+
+    const parameterOrder = this.pushParameterAndGetOrder(value);
+
+    return {
+      expression: `${column} ${membershipOperator} (:...${parameterOrder})`,
+      parameters: {
+        [parameterOrder]: value,
+      },
     };
   }
 
@@ -64,10 +86,6 @@ export class ComparativeClausesBuilder<
     throw new Error(`Invalid boolean value: ${value}`);
   }
 
-  private getLastParameter(): string {
-    return `params${this.numberOfParameters}`;
-  }
-
   private getOperatorByClause(clause: string): string {
     const operator = COMPARATIVE_CLAUSES[clause];
 
@@ -78,16 +96,24 @@ export class ComparativeClausesBuilder<
     return operator;
   }
 
-  private incrementNumberOfParameters(): number {
-    this.numberOfParameters += 1;
-    return this.numberOfParameters;
-  }
-
   private isBooleanOperator(operator: string): boolean {
     return this.checkIfOperatorExistsByClauseCategory(
       operator,
       ComparativeClausesCategoriesEnum.BOOLEAN
     );
+  }
+
+  private isMembershipOperator(operator: string): boolean {
+    return this.checkIfOperatorExistsByClauseCategory(
+      operator,
+      ComparativeClausesCategoriesEnum.MEMBERSHIP
+    );
+  }
+
+  private pushParameterAndGetOrder(parameter: unknown): string {
+    const currentParameterOrder = this.parametersArray.length;
+    this.parametersArray.push(parameter);
+    return `param${currentParameterOrder}`;
   }
 
   public buildComparativeExpression<Field extends keyof BuilderEntity>(
@@ -100,6 +126,10 @@ export class ComparativeClausesBuilder<
 
     if (this.isBooleanOperator(comparativeOperator)) {
       return this.buildBooleanExpression(column, value, comparativeOperator);
+    }
+
+    if (this.isMembershipOperator(comparativeOperator)) {
+      return this.buildMembershipExpression(column, value, comparativeOperator);
     }
     return {
       expression: '',
