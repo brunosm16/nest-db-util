@@ -39,6 +39,8 @@ describe('Comparative Clauses Builder', () => {
         userTestEntityRepository
       );
 
+      let errorMessage = '';
+
       try {
         comparativeClausesBuilderMock.buildComparativeExpression(
           'isAdmin',
@@ -47,16 +49,20 @@ describe('Comparative Clauses Builder', () => {
           'any_clause'
         );
       } catch (error: any) {
-        expect(error?.message).toEqual(
-          "Invalid comparative operator: 'any_clause'"
-        );
+        errorMessage = error?.message;
       }
+
+      expect(errorMessage).toEqual(
+        "Invalid comparative operator: 'any_clause'"
+      );
     });
 
     it('Should throw an error for invalid boolean value', () => {
       const { comparativeClausesBuilderMock } = makeSut(
         userTestEntityRepository
       );
+
+      let errorMessage = '';
 
       try {
         comparativeClausesBuilderMock.buildComparativeExpression(
@@ -66,8 +72,9 @@ describe('Comparative Clauses Builder', () => {
           'is'
         );
       } catch (error: any) {
-        expect(error?.message).toEqual('Invalid boolean value: any_value');
+        errorMessage = error?.message;
       }
+      expect(errorMessage).toEqual('Invalid boolean value: any_value');
     });
 
     it(`Should correctly create a boolean clause for 'IS TRUE'`, () => {
@@ -179,6 +186,8 @@ describe('Comparative Clauses Builder', () => {
         userTestEntityRepository
       );
 
+      let errorMessage = '';
+
       try {
         comparativeClausesBuilderMock.buildComparativeExpression(
           'id',
@@ -187,16 +196,20 @@ describe('Comparative Clauses Builder', () => {
           'in'
         );
       } catch (error: any) {
-        expect(error?.message).toEqual(
-          'Invalid array for membership operator. Array needs to have at least one item'
-        );
+        errorMessage = error?.message;
       }
+
+      expect(errorMessage).toEqual(
+        'Invalid array for membership operator. Array needs to have at least one item'
+      );
     });
 
     it(`Should throw an error for invalid array for 'notIn' clause`, () => {
       const { comparativeClausesBuilderMock } = makeSut(
         userTestEntityRepository
       );
+
+      let errorMessage = '';
 
       try {
         comparativeClausesBuilderMock.buildComparativeExpression(
@@ -206,16 +219,20 @@ describe('Comparative Clauses Builder', () => {
           'notIn'
         );
       } catch (error: any) {
-        expect(error?.message).toEqual(
-          'Invalid array for membership operator. Array needs to have at least one item'
-        );
+        errorMessage = error?.message;
       }
+
+      expect(errorMessage).toEqual(
+        'Invalid array for membership operator. Array needs to have at least one item'
+      );
     });
 
     it(`Should thrown an error for empty array for 'in' clause`, () => {
       const { comparativeClausesBuilderMock } = makeSut(
         userTestEntityRepository
       );
+
+      let errorMessage = '';
 
       try {
         comparativeClausesBuilderMock.buildComparativeExpression(
@@ -224,10 +241,12 @@ describe('Comparative Clauses Builder', () => {
           'in'
         );
       } catch (error: any) {
-        expect(error?.message).toEqual(
-          'Invalid array for membership operator. Array needs to have at least one item'
-        );
+        errorMessage = error?.message;
       }
+
+      expect(errorMessage).toEqual(
+        'Invalid array for membership operator. Array needs to have at least one item'
+      );
     });
 
     it(`Should thrown an error for empty array for 'notIn' clause`, () => {
