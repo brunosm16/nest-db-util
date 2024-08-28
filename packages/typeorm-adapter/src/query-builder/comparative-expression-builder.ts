@@ -4,10 +4,13 @@ import type { Repository } from 'typeorm';
 import type { EntityValues, SqlExpression } from '../types';
 
 import {
-  COMPARATIVE_BOOLEAN_CLAUSES_OPERATORS_MAP,
   COMPARATIVE_CLAUSES,
+  OPERATORS_BY_CLAUSE_CATEGORY,
 } from '../constants';
-import { BooleanExpressionsEnum } from '../enums';
+import {
+  BooleanExpressionsEnum,
+  ComparativeClausesCategoriesEnum,
+} from '../enums';
 import { QueryBuilderAbstract } from './query-builder.abstract';
 
 export class ComparativeClausesBuilder<
@@ -30,6 +33,17 @@ export class ComparativeClausesBuilder<
       expression: `${column} ${booleanOperator} ${booleanValue}`,
       parameters: {},
     };
+  }
+
+  private checkIfOperatorExistsByClauseCategory(
+    comparativeOperator: string,
+    clauseCategory: ComparativeClausesCategoriesEnum
+  ): boolean {
+    const clausesOperatorsMap = OPERATORS_BY_CLAUSE_CATEGORY[clauseCategory];
+
+    const operators = Object.values(clausesOperatorsMap);
+
+    return operators.includes(comparativeOperator);
   }
 
   private getBooleanValue<Field extends keyof BuilderEntity>(
@@ -69,14 +83,6 @@ export class ComparativeClausesBuilder<
     return this.numberOfParameters;
   }
 
-  private isBooleanOperator(comparativeOperator: string): boolean {
-    const booleanClauses = Object.values(
-      COMPARATIVE_BOOLEAN_CLAUSES_OPERATORS_MAP
-    );
-
-    return booleanClauses.includes(comparativeOperator);
-  }
-
   public buildComparativeExpression<Field extends keyof BuilderEntity>(
     field: Field,
     value: EntityValues<BuilderEntity, Field>,
@@ -85,7 +91,12 @@ export class ComparativeClausesBuilder<
     const column = this.getColumnNameByField(field);
     const comparativeOperator = this.getOperatorByClause(clause as string);
 
-    if (this.isBooleanOperator(comparativeOperator)) {
+    const isBooleanOperator = this.checkIfOperatorExistsByClauseCategory(
+      comparativeOperator,
+      ComparativeClausesCategoriesEnum.BOOLEAN
+    );
+
+    if (isBooleanOperator) {
       return this.buildBooleanExpression(column, value, comparativeOperator);
     }
     return {
