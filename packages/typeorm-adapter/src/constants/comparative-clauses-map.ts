@@ -13,7 +13,6 @@ export const COMPARATIVE_LIKE_CLAUSES_OPERATORS_MAP: Record<string, string> = {
   iLike: 'ILIKE',
   like: 'LIKE',
   notILike: 'NOT ILIKE',
-  notIn: 'NOT IN',
   notLike: 'NOT LIKE',
 };
 
