@@ -83,6 +83,13 @@ export class ComparativeClausesBuilder<
     return this.numberOfParameters;
   }
 
+  private isBooleanOperator(operator: string): boolean {
+    return this.checkIfOperatorExistsByClauseCategory(
+      operator,
+      ComparativeClausesCategoriesEnum.BOOLEAN
+    );
+  }
+
   public buildComparativeExpression<Field extends keyof BuilderEntity>(
     field: Field,
     value: EntityValues<BuilderEntity, Field>,
@@ -91,12 +98,7 @@ export class ComparativeClausesBuilder<
     const column = this.getColumnNameByField(field);
     const comparativeOperator = this.getOperatorByClause(clause as string);
 
-    const isBooleanOperator = this.checkIfOperatorExistsByClauseCategory(
-      comparativeOperator,
-      ComparativeClausesCategoriesEnum.BOOLEAN
-    );
-
-    if (isBooleanOperator) {
+    if (this.isBooleanOperator(comparativeOperator)) {
       return this.buildBooleanExpression(column, value, comparativeOperator);
     }
     return {
