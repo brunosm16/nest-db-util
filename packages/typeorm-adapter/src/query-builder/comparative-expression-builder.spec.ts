@@ -270,5 +270,47 @@ describe('Comparative Clauses Builder', () => {
         'Invalid array for membership operator. Array needs to have at least one item'
       );
     });
+
+    it(`Should correctly create a membership expression for 'in' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      const arrayCountries = ['Brazil', 'Canada', 'Netherlands'];
+
+      const clause = comparativeClausesBuilderMock.buildComparativeExpression(
+        'country',
+        arrayCountries,
+        'in'
+      );
+
+      expect(clause).toEqual({
+        expression: `"user_country" IN (:...param0)`,
+        parameters: {
+          param0: arrayCountries,
+        },
+      });
+    });
+
+    it(`Should correctly create a membership expression for 'in' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      const arrayCountries = ['Brazil', 'Canada', 'Netherlands'];
+
+      const clause = comparativeClausesBuilderMock.buildComparativeExpression(
+        'country',
+        arrayCountries,
+        'notIn'
+      );
+
+      expect(clause).toEqual({
+        expression: `"user_country" NOT IN (:...param0)`,
+        parameters: {
+          param0: arrayCountries,
+        },
+      });
+    });
   });
 });
