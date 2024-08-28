@@ -172,4 +172,84 @@ describe('Comparative Clauses Builder', () => {
       });
     });
   });
+
+  describe('Membership Expressions', () => {
+    it(`Should throw an error for invalid array for 'in' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      try {
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'id',
+          // @ts-expect-error: Testing invalid array value
+          'not_array_value',
+          'in'
+        );
+      } catch (error: any) {
+        expect(error?.message).toEqual(
+          'Invalid array for membership operator. Array needs to have at least one item'
+        );
+      }
+    });
+
+    it(`Should throw an error for invalid array for 'notIn' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      try {
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'id',
+          // @ts-expect-error: Testing invalid array value
+          'not_array_value',
+          'notIn'
+        );
+      } catch (error: any) {
+        expect(error?.message).toEqual(
+          'Invalid array for membership operator. Array needs to have at least one item'
+        );
+      }
+    });
+
+    it(`Should thrown an error for empty array for 'in' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      try {
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'id',
+          [],
+          'in'
+        );
+      } catch (error: any) {
+        expect(error?.message).toEqual(
+          'Invalid array for membership operator. Array needs to have at least one item'
+        );
+      }
+    });
+
+    it(`Should thrown an error for empty array for 'notIn' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      let errorMessage = '';
+
+      try {
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'id',
+          [],
+          'notIn'
+        );
+      } catch (error: any) {
+        errorMessage = error?.message;
+      }
+
+      expect(errorMessage).toEqual(
+        'Invalid array for membership operator. Array needs to have at least one item'
+      );
+    });
+  });
 });
