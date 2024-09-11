@@ -36,6 +36,19 @@ export class ComparativeClausesBuilder<
     };
   }
 
+  private buildDefaultComparativeExpression<Field extends keyof BuilderEntity>(
+    column: string,
+    value: EntityValues<BuilderEntity, Field>,
+    comparativeOperator: string
+  ): SqlExpression {
+    const parameterOrder = this.pushParameterAndGetOrder(value);
+
+    return {
+      expression: `${column} ${comparativeOperator} :${parameterOrder}`,
+      parameters: { [parameterOrder]: value },
+    };
+  }
+
   private buildMembershipExpression<Field extends keyof BuilderEntity>(
     column: string,
     value: EntityValues<BuilderEntity, Field>,
@@ -131,9 +144,11 @@ export class ComparativeClausesBuilder<
     if (this.isMembershipOperator(comparativeOperator)) {
       return this.buildMembershipExpression(column, value, comparativeOperator);
     }
-    return {
-      expression: '',
-      parameters: {},
-    };
+
+    return this.buildDefaultComparativeExpression(
+      column,
+      value,
+      comparativeOperator
+    );
   }
 }

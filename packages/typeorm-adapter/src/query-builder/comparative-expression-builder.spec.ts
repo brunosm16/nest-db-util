@@ -313,4 +313,208 @@ describe('Comparative Clauses Builder', () => {
       });
     });
   });
+
+  describe('Comparative range clauses', () => {
+    it(`Should correctly create a default expression for 'eq' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'country',
+          'Brazil',
+          'eq'
+        );
+
+      expect(expression).toEqual({
+        expression: `"user_country" = :param0`,
+        parameters: {
+          param0: 'Brazil',
+        },
+      });
+    });
+
+    it(`Should correctly create a default expression for 'gt' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'createdAt',
+          '2024-01-01',
+          'gt'
+        );
+
+      expect(expression).toEqual({
+        expression: `"created_at" > :param0`,
+        parameters: {
+          param0: '2024-01-01',
+        },
+      });
+    });
+
+    it(`Should correctly create a default expression for 'gte' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'socialNumber',
+          12345,
+          'gte'
+        );
+
+      expect(expression).toEqual({
+        expression: `"social_number" >= :param0`,
+        parameters: {
+          param0: 12345,
+        },
+      });
+    });
+
+    it(`Should correctly create a default expression for 'lt' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'socialNumber',
+          12345,
+          'lt'
+        );
+
+      expect(expression).toEqual({
+        expression: `"social_number" < :param0`,
+        parameters: {
+          param0: 12345,
+        },
+      });
+    });
+
+    it(`Should correctly create a default expression for 'lte' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'socialNumber',
+          12345,
+          'lte'
+        );
+
+      expect(expression).toEqual({
+        expression: `"social_number" <= :param0`,
+        parameters: {
+          param0: 12345,
+        },
+      });
+    });
+
+    it(`Should correctly create a default expression for 'neq' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'socialNumber',
+          12345,
+          'neq'
+        );
+
+      expect(expression).toEqual({
+        expression: `"social_number" != :param0`,
+        parameters: {
+          param0: 12345,
+        },
+      });
+    });
+  });
+
+  describe('Comparative like clauses', () => {
+    it(`Should correctly create a default expression for 'like' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'username',
+          'john_doe',
+          'like'
+        );
+
+      expect(expression).toEqual({
+        expression: `"username" LIKE :param0`,
+        parameters: {
+          param0: 'john_doe',
+        },
+      });
+    });
+
+    it(`Should correctly create a default expression for 'iLike' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'username',
+          'john_doe',
+          'iLike'
+        );
+
+      expect(expression).toEqual({
+        expression: `"username" ILIKE :param0`,
+        parameters: {
+          param0: 'john_doe',
+        },
+      });
+    });
+
+    it(`Should correctly create a default expression for 'notILike' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'username',
+          'john_doe',
+          'notILike'
+        );
+
+      expect(expression).toEqual({
+        expression: `"username" NOT ILIKE :param0`,
+        parameters: {
+          param0: 'john_doe',
+        },
+      });
+    });
+
+    it(`Should correctly create a default expression for 'notLike' clause`, () => {
+      const { comparativeClausesBuilderMock } = makeSut(
+        userTestEntityRepository
+      );
+
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'username',
+          'john_doe',
+          'notLike'
+        );
+
+      expect(expression).toEqual({
+        expression: `"username" NOT LIKE :param0`,
+        parameters: {
+          param0: 'john_doe',
+        },
+      });
+    });
+  });
 });
