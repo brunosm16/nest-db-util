@@ -1,6 +1,6 @@
-import type { ComparativeClausesKeyValue } from './comparative-clauses.interface';
+import type { DatabaseFilters } from './database-filters.interface';
 
 export type ConditionalOperators<T> = {
-  and?: ComparativeClausesKeyValue<T>[];
-  or?: ComparativeClausesKeyValue<T>[];
+  and?: DatabaseFilters<T>[];
+  or?: DatabaseFilters<T>[];
 };
