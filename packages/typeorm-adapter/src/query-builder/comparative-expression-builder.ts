@@ -14,7 +14,7 @@ import {
 import { isValidArray } from '../utils';
 import { QueryBuilderAbstract } from './query-builder.abstract';
 
-export class ComparativeClausesBuilder<
+export class ComparativeExpressionBuilder<
   BuilderEntity,
 > extends QueryBuilderAbstract<BuilderEntity> {
   private parametersArray: unknown[] = [];

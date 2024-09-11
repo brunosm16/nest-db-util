@@ -2,19 +2,19 @@ import type { Repository } from 'typeorm';
 
 import { UserEntity } from '../../test/entities';
 import { sqliteDatabaseTestFactory } from '../../test/factories';
-import { ComparativeClausesBuilder } from './comparative-expression-builder';
+import { ComparativeExpressionBuilder } from './comparative-expression-builder';
 
 interface SutTypes<T> {
-  comparativeClausesBuilderMock: ComparativeClausesBuilder<T>;
+  ComparativeExpressionBuilderMock: ComparativeExpressionBuilder<T>;
 }
 
-const makeComparativeClausesBuilderMock = <T>(repository: Repository<T>) =>
-  new ComparativeClausesBuilder<T>(repository);
+const makeComparativeExpressionBuilderMock = <T>(repository: Repository<T>) =>
+  new ComparativeExpressionBuilder<T>(repository);
 
 const makeSut = <T>(repository: Repository<T>): SutTypes<T> => {
-  const comparativeClausesBuilderMock =
-    makeComparativeClausesBuilderMock(repository);
-  return { comparativeClausesBuilderMock };
+  const ComparativeExpressionBuilderMock =
+    makeComparativeExpressionBuilderMock(repository);
+  return { ComparativeExpressionBuilderMock };
 };
 
 describe('Comparative Clauses Builder', () => {
@@ -35,14 +35,14 @@ describe('Comparative Clauses Builder', () => {
 
   describe('Boolean Expressions', () => {
     it('Should throw an error for non-existing clause', () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       let errorMessage = '';
 
       try {
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'isAdmin',
           true,
           // @ts-expect-error: Testing non-existing clause
@@ -58,14 +58,14 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it('Should throw an error for invalid boolean value', () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       let errorMessage = '';
 
       try {
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'isAdmin',
           // @ts-expect-error: Testing invalid boolean value
           'any_value',
@@ -78,12 +78,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a boolean clause for 'IS TRUE'`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'isAdmin',
           true,
           'is'
@@ -96,12 +96,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a boolean clause for 'IS FALSE'`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'isAdmin',
           false,
           'is'
@@ -114,12 +114,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a boolean clause for 'IS NULL'`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'isAdmin',
           null,
           'is'
@@ -132,12 +132,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a boolean clause for 'IS NOT TRUE'`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'isAdmin',
           true,
           'isNot'
@@ -150,12 +150,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a boolean clause for 'IS NOT FALSE'`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'isAdmin',
           false,
           'isNot'
@@ -168,12 +168,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a boolean clause for 'IS NOT NULL'`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'isAdmin',
           null,
           'isNot'
@@ -188,14 +188,14 @@ describe('Comparative Clauses Builder', () => {
 
   describe('Membership Expressions', () => {
     it(`Should throw an error for invalid array for 'in' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       let errorMessage = '';
 
       try {
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'id',
           // @ts-expect-error: Testing invalid array value
           'not_array_value',
@@ -211,14 +211,14 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should throw an error for invalid array for 'notIn' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       let errorMessage = '';
 
       try {
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'id',
           // @ts-expect-error: Testing invalid array value
           'not_array_value',
@@ -234,14 +234,14 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should thrown an error for empty array for 'in' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       let errorMessage = '';
 
       try {
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'id',
           [],
           'in'
@@ -256,14 +256,14 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should thrown an error for empty array for 'notIn' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       let errorMessage = '';
 
       try {
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'id',
           [],
           'notIn'
@@ -278,17 +278,18 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a membership expression for 'in' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const arrayCountries = ['Brazil', 'Canada', 'Netherlands'];
 
-      const clause = comparativeClausesBuilderMock.buildComparativeExpression(
-        'country',
-        arrayCountries,
-        'in'
-      );
+      const clause =
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
+          'country',
+          arrayCountries,
+          'in'
+        );
 
       expect(clause).toEqual({
         expression: `"user_country" IN (:...param0)`,
@@ -299,17 +300,18 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a membership expression for 'in' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const arrayCountries = ['Brazil', 'Canada', 'Netherlands'];
 
-      const clause = comparativeClausesBuilderMock.buildComparativeExpression(
-        'country',
-        arrayCountries,
-        'notIn'
-      );
+      const clause =
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
+          'country',
+          arrayCountries,
+          'notIn'
+        );
 
       expect(clause).toEqual({
         expression: `"user_country" NOT IN (:...param0)`,
@@ -322,12 +324,12 @@ describe('Comparative Clauses Builder', () => {
 
   describe('Comparative range clauses', () => {
     it(`Should correctly create a default expression for 'eq' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'country',
           'Brazil',
           'eq'
@@ -342,12 +344,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a default expression for 'gt' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'createdAt',
           '2024-01-01',
           'gt'
@@ -362,12 +364,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a default expression for 'gte' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'socialNumber',
           12345,
           'gte'
@@ -382,12 +384,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a default expression for 'lt' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'socialNumber',
           12345,
           'lt'
@@ -402,12 +404,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a default expression for 'lte' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'socialNumber',
           12345,
           'lte'
@@ -422,12 +424,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a default expression for 'neq' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'socialNumber',
           12345,
           'neq'
@@ -444,12 +446,12 @@ describe('Comparative Clauses Builder', () => {
 
   describe('Comparative like clauses', () => {
     it(`Should correctly create a default expression for 'like' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'username',
           'john_doe',
           'like'
@@ -464,12 +466,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a default expression for 'iLike' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'username',
           'john_doe',
           'iLike'
@@ -484,12 +486,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a default expression for 'notILike' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'username',
           'john_doe',
           'notILike'
@@ -504,12 +506,12 @@ describe('Comparative Clauses Builder', () => {
     });
 
     it(`Should correctly create a default expression for 'notLike' clause`, () => {
-      const { comparativeClausesBuilderMock } = makeSut(
+      const { ComparativeExpressionBuilderMock } = makeSut(
         userTestEntityRepository
       );
 
       const expression =
-        comparativeClausesBuilderMock.buildComparativeExpression(
+        ComparativeExpressionBuilderMock.buildComparativeExpression(
           'username',
           'john_doe',
           'notLike'
