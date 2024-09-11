@@ -82,13 +82,14 @@ describe('Comparative Clauses Builder', () => {
         userTestEntityRepository
       );
 
-      const clause = comparativeClausesBuilderMock.buildComparativeExpression(
-        'isAdmin',
-        true,
-        'is'
-      );
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'isAdmin',
+          true,
+          'is'
+        );
 
-      expect(clause).toEqual({
+      expect(expression).toEqual({
         expression: `"is_admin" IS TRUE`,
         parameters: {},
       });
@@ -99,13 +100,14 @@ describe('Comparative Clauses Builder', () => {
         userTestEntityRepository
       );
 
-      const clause = comparativeClausesBuilderMock.buildComparativeExpression(
-        'isAdmin',
-        false,
-        'is'
-      );
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'isAdmin',
+          false,
+          'is'
+        );
 
-      expect(clause).toEqual({
+      expect(expression).toEqual({
         expression: `"is_admin" IS FALSE`,
         parameters: {},
       });
@@ -116,13 +118,14 @@ describe('Comparative Clauses Builder', () => {
         userTestEntityRepository
       );
 
-      const clause = comparativeClausesBuilderMock.buildComparativeExpression(
-        'isAdmin',
-        null,
-        'is'
-      );
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'isAdmin',
+          null,
+          'is'
+        );
 
-      expect(clause).toEqual({
+      expect(expression).toEqual({
         expression: `"is_admin" IS NULL`,
         parameters: {},
       });
@@ -133,13 +136,14 @@ describe('Comparative Clauses Builder', () => {
         userTestEntityRepository
       );
 
-      const clause = comparativeClausesBuilderMock.buildComparativeExpression(
-        'isAdmin',
-        true,
-        'isNot'
-      );
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'isAdmin',
+          true,
+          'isNot'
+        );
 
-      expect(clause).toEqual({
+      expect(expression).toEqual({
         expression: `"is_admin" IS NOT TRUE`,
         parameters: {},
       });
@@ -150,13 +154,14 @@ describe('Comparative Clauses Builder', () => {
         userTestEntityRepository
       );
 
-      const clause = comparativeClausesBuilderMock.buildComparativeExpression(
-        'isAdmin',
-        false,
-        'isNot'
-      );
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'isAdmin',
+          false,
+          'isNot'
+        );
 
-      expect(clause).toEqual({
+      expect(expression).toEqual({
         expression: `"is_admin" IS NOT FALSE`,
         parameters: {},
       });
@@ -167,13 +172,14 @@ describe('Comparative Clauses Builder', () => {
         userTestEntityRepository
       );
 
-      const clause = comparativeClausesBuilderMock.buildComparativeExpression(
-        'isAdmin',
-        null,
-        'isNot'
-      );
+      const expression =
+        comparativeClausesBuilderMock.buildComparativeExpression(
+          'isAdmin',
+          null,
+          'isNot'
+        );
 
-      expect(clause).toEqual({
+      expect(expression).toEqual({
         expression: `"is_admin" IS NOT NULL`,
         parameters: {},
       });
