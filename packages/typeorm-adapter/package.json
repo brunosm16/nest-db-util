@@ -1,6 +1,6 @@
 {
   "name": "@nest-db-util/typeorm-adapter",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "TypeORM adapter for nest-db-util",
   "homepage": "https://github.com/brunosm16/nest-db-util#readme",
   "bugs": {
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@nest-db-util/core": "^0.0.18",
+    "@nest-db-util/core": "^0.0.19",
     "class-transformer": "0.5.1",
     "tsup": "^8.2.4",
     "typeorm": "0.3.20"
