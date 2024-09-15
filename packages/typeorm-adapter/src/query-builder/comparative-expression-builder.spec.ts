@@ -1,6 +1,7 @@
 import type { Repository } from 'typeorm';
 
-import { UserEntity } from '../../test/entities';
+import type { UserEntity } from '../../test/entities';
+
 import { sqliteDatabaseTestFactory } from '../../test/factories';
 import { ComparativeExpressionBuilder } from './comparative-expression-builder';
 
@@ -26,7 +27,7 @@ describe('Comparative Clauses Builder', () => {
     await testingDatabase.initialize();
 
     userTestEntityRepository =
-      testingDatabase.getRepositoryByEntity(UserEntity);
+      testingDatabase.getRepositoryByEntity('UserEntity');
   });
 
   afterEach(async () => {

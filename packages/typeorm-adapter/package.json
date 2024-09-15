@@ -40,11 +40,9 @@
     "@faker-js/faker": "^8.4.1",
     "@nest-db-util/core": "^0.0.20",
     "class-transformer": "0.5.1",
+    "sqlite3": "^5.1.7",
     "tsup": "^8.2.4",
-    "typeorm": "0.3.20"
-  },
-  "devDependencies": {
-    "better-sqlite3": "11.2.1"
+    "typeorm": "0.2.25"
   },
   "gitHead": "4c0c0c817390282cc3f716d3e8a8a0719cd05ad2"
 }

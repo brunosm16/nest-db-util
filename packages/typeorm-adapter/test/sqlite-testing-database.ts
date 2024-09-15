@@ -1,25 +1,27 @@
 /* eslint-disable no-useless-catch */
-import type { DataSourceOptions, EntityTarget } from 'typeorm';
+
+import type { Connection, ConnectionOptions, EntitySchema } from 'typeorm';
 
 import { faker } from '@faker-js/faker';
-import { DataSource } from 'typeorm';
+import { createConnection } from 'typeorm';
 
 import { UserEntity } from './entities/user.entity';
 
 export class SQLiteTestingDatabase {
-  private dataSource: DataSource;
+  private connection: Connection;
 
   constructor() {
     this.initialize();
   }
 
-  private get dataSourceConfiguration() {
+  private get databaseConfig(): ConnectionOptions {
     return {
       database: ':memory:',
       dropSchema: true,
       entities: [UserEntity],
+      name: 'test-database-connection',
       synchronize: true,
-      type: 'better-sqlite3',
+      type: 'sqlite',
     };
   }
 
@@ -33,7 +35,7 @@ export class SQLiteTestingDatabase {
 
   public async clearDatabase(): Promise<void> {
     try {
-      const UserEntityRepository = this.dataSource.getRepository(UserEntity);
+      const UserEntityRepository = this.connection.getRepository(UserEntity);
 
       await UserEntityRepository.clear();
     } catch (err) {
@@ -43,23 +45,21 @@ export class SQLiteTestingDatabase {
 
   public async closeDatabase(): Promise<void> {
     try {
-      await this.dataSource.destroy();
+      await this.connection.close();
     } catch (err) {
       throw err;
     }
   }
 
-  public getRepositoryByEntity<T>(entityTarget: EntityTarget<T>) {
-    return this.dataSource.getRepository(entityTarget);
+  public getRepositoryByEntity<T>(entityTarget: EntitySchema<T> | string) {
+    return this.connection.getRepository(entityTarget);
   }
 
   public async initialize(): Promise<void> {
     try {
-      this.dataSource = new DataSource(
-        this.dataSourceConfiguration as DataSourceOptions
-      );
-
-      await this.dataSource.initialize();
+      this.connection = await createConnection({
+        ...this.databaseConfig,
+      });
     } catch (err) {
       throw err;
     }
@@ -67,7 +67,7 @@ export class SQLiteTestingDatabase {
 
   public async seed(itemsAmount: number): Promise<number> {
     try {
-      const UserEntityRepository = this.dataSource.getRepository(UserEntity);
+      const UserEntityRepository = this.connection.getRepository(UserEntity);
 
       const promises = [];
 
@@ -84,6 +84,6 @@ export class SQLiteTestingDatabase {
   }
 
   public get UserEntityRepository() {
-    return this.dataSource.getRepository(UserEntity);
+    return this.connection.getRepository(UserEntity);
   }
 }
